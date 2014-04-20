@@ -8,6 +8,11 @@
   bug: 8148617
 },
 {
+  name: "android.nativeopengl.EGLCleanupTest#TestCorrect",
+  name: "android.nativeopengl.EGLCreateContextTest#BadAttributeFails",
+  bug: 11652564
+},
+{
   name: "android.hardware.camera2.cts.ImageReaderTest",
   name: "android.hardware.camera2.cts.CameraCharacteristicsTest",
   name: "android.hardware.camera2.cts.CameraCaptureResultTest",
@@ -16,8 +21,8 @@
   bug: 11141002
 },
 {
-  name: "com.android.pts.opengl.primitive.GLPrimitiveBenchmark#testFullPipelineOffscreen",
-  name: "com.android.pts.opengl.primitive.GLPrimitiveBenchmark#testPixelOutputOffscreen",
+  name: "com.android.cts.opengl.primitive.GLPrimitiveBenchmark#testFullPipelineOffscreen",
+  name: "com.android.cts.opengl.primitive.GLPrimitiveBenchmark#testPixelOutputOffscreen",
   bug: 11238219
 },
 {

@@ -18,7 +18,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.android.cts.verifier"
       android:versionCode="1"
-      android:versionName="4.4_r0">
+      android:versionName="4.4_r1.9">
 
     <!-- Using 10+ for more complete NFC support... -->
     <uses-sdk android:minSdkVersion="12"></uses-sdk>
@@ -76,7 +76,7 @@
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:label="@string/report_viewer" />
 
-        <provider android:name=".TestResultsProvider" 
+        <provider android:name=".TestResultsProvider"
                 android:authorities="com.android.cts.verifier.testresultsprovider" />
 
         <activity android:name=".admin.PolicySerializationTestActivity"
@@ -264,21 +264,13 @@
         </activity>
 
         <activity android:name="com.android.cts.verifier.nfc.hce.HceReaderTestActivity"
-                android:label="@string/nfc_test"
+                android:label="@string/nfc_hce_reader_tests"
                 android:configChanges="keyboardHidden|orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.cts.intent.category.MANUAL_TEST" />
-            </intent-filter>
         </activity>
 
         <activity android:name="com.android.cts.verifier.nfc.hce.HceEmulatorTestActivity"
-                android:label="@string/nfc_test"
+                android:label="@string/nfc_hce_emulator_tests"
                 android:configChanges="keyboardHidden|orientation|screenSize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.cts.intent.category.MANUAL_TEST" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".nfc.NdefPushSenderActivity"
@@ -292,12 +284,25 @@
         <activity android:name=".nfc.TagVerifierActivity"
                 android:label="@string/nfc_tag_verifier"
                 android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity android:name=".nfc.hce.DefaultRouteEmulatorActivity"
+                android:label="@string/nfc_hce_default_route_emulator"
+                android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity android:name=".nfc.hce.ProtocolParamsEmulatorActivity"
+                android:label="@string/nfc_hce_protocol_params_emulator"
+                android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity android:name=".nfc.hce.SinglePaymentEmulatorActivity"
                 android:label="@string/nfc_hce_single_payment_emulator"
                 android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <activity android:name=".nfc.hce.SimpleReaderActivity"
                 android:label="@string/nfc_hce_single_payment_reader"
+                android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity android:name=".nfc.hce.ProtocolParamsReaderActivity"
+                android:label="@string/nfc_hce_protocol_params_reader"
                 android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <activity android:name=".nfc.hce.DualPaymentEmulatorActivity"
@@ -412,6 +417,18 @@
             <meta-data android:name="test_required_features" android:value="android.hardware.sensor.accelerometer" />
         </activity>
 
+        <activity android:name=".sensors.AccelerometerMeasurementTestActivity"
+                  android:label="@string/snsr_accel_m_test"
+                  android:screenOrientation="nosensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.cts.intent.category.MANUAL_TEST"/>
+            </intent-filter>
+            <meta-data android:name="test_category" android:value="@string/test_category_sensors"/>
+            <meta-data android:name="test_required_features"
+                       android:value="android.hardware.sensor.accelerometer"/>
+        </activity>
+
         <activity android:name=".sensors.GyroscopeTestActivity" android:label="@string/snsr_gyro_test"
                 android:screenOrientation="nosensor">
             <intent-filter>
@@ -421,6 +438,31 @@
             <meta-data android:name="test_category" android:value="@string/test_category_sensors" />
             <meta-data android:name="test_required_features" android:value="android.hardware.sensor.gyroscope" />
         </activity>
+
+        <activity android:name=".sensors.GyroscopeMeasurementTestActivity"
+                  android:label="@string/snsr_gyro_m_test"
+                  android:screenOrientation="nosensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.cts.intent.category.MANUAL_TEST"/>
+            </intent-filter>
+            <meta-data android:name="test_category" android:value="@string/test_category_sensors"/>
+            <meta-data android:name="test_require_features"
+                       android:value="android.hardware.sensor.gyroscope"/>
+        </activity>
+
+        <!-- Disable the test until calibration routine is verified -->
+        <!--activity android:name=".sensors.MagneticFieldMeasurementTestActivity"
+                  android:label="@string/snsr_mag_m_test"
+                  android:screenOrientation="nosensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.cts.intent.category.MANUAL_TEST" />
+            </intent-filter>
+            <meta-data android:name="test_category" android:value="@string/test_category_sensors" />
+            <meta-data android:name="test_required_features"
+                       android:value="android.hardware.sensor.compass" />
+        </activity-->
 
         <activity android:name=".camera.formats.CameraFormatsActivity"
                  android:label="@string/camera_format"
@@ -462,6 +504,7 @@
             <meta-data android:name="test_required_features" android:value="android.hardware.camera.any"/>
         </activity>
 
+
         <activity android:name=".camera.orientation.CameraOrientationActivity"
                  android:label="@string/camera_orientation"
                  android:screenOrientation="landscape">
@@ -498,6 +541,19 @@
             android:label="@string/camera_fov_label_options" >
         </activity>
 
+
+        <activity android:name=".camera.video.CameraVideoActivity"
+                 android:label="@string/camera_video"
+                 android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.cts.intent.category.MANUAL_TEST" />
+            </intent-filter>
+            <meta-data android:name="test_category" android:value="@string/test_category_camera" />
+            <meta-data android:name="test_required_features"
+                    android:value="android.hardware.camera.any"/>
+        </activity>
+
         <activity android:name=".usb.UsbAccessoryTestActivity"
                 android:label="@string/usb_accessory_test"
                 android:configChanges="keyboardHidden|orientation|screenSize">
@@ -519,7 +575,7 @@
             <meta-data android:name="test_category" android:value="@string/test_category_networking" />
             <meta-data android:name="test_required_features" android:value="android.hardware.wifi.direct" />
         </activity>
-        
+
         <activity android:name=".nls.NotificationListenerVerifierActivity"
                 android:label="@string/nls_test">
             <intent-filter>
@@ -537,8 +593,8 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
-        
-        <service  android:name="nls.NotificationListenerVerifierActivity$DismissService"/>
+
+        <service  android:name=".nls.NotificationListenerVerifierActivity$DismissService"/>
         <activity android:name=".security.CAInstallNotificationVerifierActivity"
                 android:label="@string/cacert_test">
             <intent-filter>
